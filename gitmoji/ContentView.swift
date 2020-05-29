@@ -23,6 +23,8 @@ struct GitmojiList: Codable {
 struct MojiButton: View {
     var Gitmoji: Gitmoji
     
+    @State private var showPopover: Bool = false
+    
     init(emoji: Gitmoji){
         Gitmoji = emoji
     }
@@ -32,12 +34,19 @@ struct MojiButton: View {
         Button(action: {
             NSPasteboard.general.clearContents()
             NSPasteboard.general.setString(self.Gitmoji.code, forType: NSPasteboard.PasteboardType.string)
+            self.showPopover = true
+            Timer.scheduledTimer(withTimeInterval: 2, repeats: false) { timer in
+                self.showPopover = false
+            }
         }) {
             HStack {
                 Text(Gitmoji.emoji)
                 Text(Gitmoji.description)
             }
         }.buttonStyle(PlainButtonStyle())
+        .popover(isPresented: self.$showPopover, arrowEdge: .bottom) {
+            Text("Copied!").padding()
+        }
     }
 }
 
