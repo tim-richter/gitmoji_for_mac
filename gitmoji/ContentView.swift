@@ -22,8 +22,37 @@ struct GitmojiList: Codable {
 
 struct ContentView: View {
     @State private var text = ""
+    @State private var current = Set<String>()
     
     var body: some View {
+        let emojis: GitmojiList = convertJSON()!
+        
+        return VStack(alignment: .center) {
+            Text("😊")
+            .font(.title)
+            TextField(
+                "Search Gitmoji",
+                text: $text,
+                onEditingChanged: { _ in print("changed") },
+                onCommit: { print("commit") }
+            )
+                .multilineTextAlignment(/*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                .cornerRadius(/*@START_MENU_TOKEN@*/3.0/*@END_MENU_TOKEN@*/)
+            List(emojis.gitmojis, id: \.code, selection: $current) { Gitmoji in
+                Button(action: {
+                    print(self)
+                }) {
+                    HStack {
+                        Text(Gitmoji.emoji)
+                        Text(Gitmoji.description)
+                    }
+                }.buttonStyle(PlainButtonStyle())
+            }
+        }
+        .padding(.all)
+    }
+    
+    func convertJSON() -> (GitmojiList)? {
         let emojis: GitmojiList
         do {
             let path = Bundle.main.path(forResource: "gitmoji", ofType: "json")
@@ -33,23 +62,12 @@ struct ContentView: View {
             let decoder = JSONDecoder()
             emojis = try decoder.decode(GitmojiList.self, from: json!)
 
-            print(emojis.gitmojis.count)
+            return emojis
         } catch {
             print("error", error)
         }
         
-        
-        return VStack {
-            TextField(
-                "Search for Emoji",
-                text: $text,
-                onEditingChanged: { _ in print("changed") },
-                onCommit: { print("commit") }
-            )
-            Text("😊")
-                .font(.title)
-        }
-        .padding()
+        return nil
     }
 }
 
