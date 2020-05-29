@@ -20,9 +20,29 @@ struct GitmojiList: Codable {
     let gitmojis: [Gitmoji]
 }
 
+struct MojiButton: View {
+    var Gitmoji: Gitmoji
+    
+    init(emoji: Gitmoji){
+        Gitmoji = emoji
+    }
+    
+    
+    var body: some View {
+        Button(action: {
+            NSPasteboard.general.clearContents()
+            NSPasteboard.general.setString(self.Gitmoji.code, forType: NSPasteboard.PasteboardType.string)
+        }) {
+            HStack {
+                Text(Gitmoji.emoji)
+                Text(Gitmoji.description)
+            }
+        }.buttonStyle(PlainButtonStyle())
+    }
+}
+
 struct ContentView: View {
     @State private var text = ""
-    @State private var current = Set<String>()
     
     var body: some View {
         let emojis: GitmojiList = convertJSON()!
@@ -38,15 +58,8 @@ struct ContentView: View {
             )
                 .multilineTextAlignment(/*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
                 .cornerRadius(/*@START_MENU_TOKEN@*/3.0/*@END_MENU_TOKEN@*/)
-            List(emojis.gitmojis, id: \.code, selection: $current) { Gitmoji in
-                Button(action: {
-                    print(self)
-                }) {
-                    HStack {
-                        Text(Gitmoji.emoji)
-                        Text(Gitmoji.description)
-                    }
-                }.buttonStyle(PlainButtonStyle())
+            List(emojis.gitmojis, id: \.code) { Gitmoji in
+                MojiButton(emoji: Gitmoji)
             }
         }
         .padding(.all)
