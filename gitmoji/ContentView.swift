@@ -58,8 +58,11 @@ struct ContentView: View {
             )
                 .multilineTextAlignment(/*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
                 .cornerRadius(/*@START_MENU_TOKEN@*/3.0/*@END_MENU_TOKEN@*/)
-            List(emojis.gitmojis, id: \.code) { Gitmoji in
-                MojiButton(emoji: Gitmoji)
+            List {
+                ForEach(emojis.gitmojis.filter{$0.description.hasPrefix(text)}, id: \.code) {
+                    Gitmoji in MojiButton(emoji: Gitmoji)
+                }
+                
             }
         }
         .padding(.all)
