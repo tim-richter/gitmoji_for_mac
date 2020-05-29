@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		515B341524812E3D00905425 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 515B341424812E3D00905425 /* README.md */; };
 		51767D74247E4D83008F6523 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51767D73247E4D83008F6523 /* AppDelegate.swift */; };
 		51767D76247E4D83008F6523 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51767D75247E4D83008F6523 /* ContentView.swift */; };
 		51767D78247E4D86008F6523 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 51767D77247E4D86008F6523 /* Assets.xcassets */; };
@@ -35,6 +36,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		515B341424812E3D00905425 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		51767D70247E4D83008F6523 /* gitmoji.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = gitmoji.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		51767D73247E4D83008F6523 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		51767D75247E4D83008F6523 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -80,6 +82,7 @@
 		51767D67247E4D83008F6523 = {
 			isa = PBXGroup;
 			children = (
+				515B341424812E3D00905425 /* README.md */,
 				51767D72247E4D83008F6523 /* gitmoji */,
 				51767D88247E4D86008F6523 /* gitmojiTests */,
 				51767D93247E4D86008F6523 /* gitmojiUITests */,
@@ -244,6 +247,7 @@
 			files = (
 				51767D7E247E4D86008F6523 /* Main.storyboard in Resources */,
 				51767D7B247E4D86008F6523 /* Preview Assets.xcassets in Resources */,
+				515B341524812E3D00905425 /* README.md in Resources */,
 				51767D78247E4D86008F6523 /* Assets.xcassets in Resources */,
 				51767DA6247E5C55008F6523 /* gitmoji.json in Resources */,
 			);
